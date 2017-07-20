@@ -54,7 +54,7 @@ public Map<String, Integer> wordCount(String[] strings) {
     } else {
       int count = map.get(s);
       map.put(s, count + 1);
-    }
+    } 
   }
   
   return map;
