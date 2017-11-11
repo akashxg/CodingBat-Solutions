@@ -133,4 +133,86 @@ public int countHi(String str) {
   return countHi(str.substring(1));
 }
 
+// Given a string, compute recursively (no loops) a new string where all the lowercase 
+// 'x' chars have been changed to 'y' chars.
+public String changeXY(String str) {
+  if (str.length() == 0) return str;
+  
+  if (str.charAt(0) == 'x') {
+    return 'y' + changeXY(str.substring(1));
+  }
+  
+  return str.charAt(0) + changeXY(str.substring(1)); 
+}
 
+
+// Given a string, compute recursively (no loops) a new string where all appearances 
+// of "pi" have been replaced by "3.14".
+public String changePi(String str) {
+  if (str.length() < 2) return str;
+  
+  if (str.charAt(0) == 'p' && str.charAt(1) == 'i') {
+    return "3.14" + changePi(str.substring(2));
+  }
+  
+  return str.charAt(0) + changePi(str.substring(1));
+}
+
+// Given a string, compute recursively a new string where all the 'x' chars have 
+// been removed.
+public String noX(String str) {
+  if (str.length() == 0) return str;
+  
+  if (str.charAt(0) == 'x') {
+    return noX(str.substring(1));
+  }
+  
+  return str.charAt(0) + noX(str.substring(1));
+}
+
+/*
+Given an array of ints, compute recursively if the array contains a 6. We'll use the convention 
+of considering only the part of the array that begins at the given index. In this way, a recursive 
+call can pass index+1 to move down the array. The initial call will pass in index as 0.
+*/
+public boolean array6(int[] nums, int index) {
+  if (index == nums.length) return false;
+  
+  if (nums[index] == 6) {
+    return true;
+  }
+  
+  return array6(nums, index + 1);
+}
+
+/*
+Given an array of ints, compute recursively the number of times that the value 11 appears in the array.
+We'll use the convention of considering only the part of the array that begins at the given index. 
+In this way, a recursive call can pass index+1 to move down the array. The initial call will pass 
+in index as 0.
+*/
+public int array11(int[] nums, int index) {
+  if (index == nums.length) return 0;
+  
+  if (nums[index] == 11) {
+    return 1 + array11(nums, index + 1);
+  }
+  
+  return array11(nums, index + 1);
+}
+
+/*
+Given an array of ints, compute recursively if the array contains somewhere a value followed 
+in the array by that value times 10. We'll use the convention of considering only the part of the 
+array that begins at the given index. In this way, a recursive call can pass index+1 to move down 
+the array. The initial call will pass in index as 0.
+*/
+public boolean array220(int[] nums, int index) {
+  if (index >= nums.length - 1) return false;
+  
+  if (nums[index] * 10 == nums[index + 1]) {
+    return true;
+  }
+  
+  return array220(nums, index + 1);
+}
