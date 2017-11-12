@@ -238,3 +238,71 @@ public String pairStar(String str) {
   
   return str.charAt(0) + pairStar(str.substring(1));
 }
+
+// Given a string, compute recursively a new string where all the lowercase 'x' 
+// chars have been moved to the end of the string.
+public String endX(String str) {
+  if (str.length() == 0) return str;
+  
+  if (str.charAt(0) == 'x') {
+    return endX(str.substring(1)) + 'x';
+  }
+  
+  return str.charAt(0) + endX(str.substring(1));
+}
+
+/*
+We'll say that a "pair" in a string is two instances of a char separated by a char. 
+So "AxA" the A's make a pair. Pair's can overlap, so "AxAxA" contains 3 pairs -- 2 
+for A and 1 for x. Recursively compute the number of pairs in the given string.
+*/
+public int countPairs(String str) {
+  if (str.length() < 3) return 0;
+  
+  if (str.charAt(0) == str.charAt(2)) {
+    return 1 + countPairs(str.substring(1));
+  }
+  
+  return countPairs(str.substring(1));
+}
+
+// Count recursively the total number of "abc" and "aba" substrings 
+// that appear in the given string
+public int countAbc(String str) {
+  if (str.length() < 3) return 0;
+  
+  if (str.charAt(0) == 'a' && str.charAt(1) == 'b') {
+    if (str.charAt(2) == 'c' || str.charAt(2) == 'a') {
+      return 1 + countAbc(str.substring(2));
+    }
+  }
+  
+  return countAbc(str.substring(1));
+}
+
+// Given a string, compute recursively (no loops) the number of "11" 
+// substrings in the string. The "11" substrings should not overlap.
+public int count11(String str) {
+  if (str.length() < 2) return 0;
+  
+  if (str.charAt(0) == '1' && str.charAt(1) == '1') {
+    return 1 + count11(str.substring(2));
+  }
+  
+  return count11(str.substring(1));
+}
+
+/*
+Given a string, return recursively a "cleaned" string where adjacent chars 
+that are the same have been reduced to a single char. So "yyzzza" yields 
+"yza".
+*/
+public String stringClean(String str) {
+  if (str.length() < 2) return str;
+  
+  if (str.charAt(0) == str.charAt(1)) {
+    return stringClean(str.substring(1));
+  }
+  
+  return str.charAt(0) + stringClean(str.substring(1));
+}
