@@ -141,3 +141,106 @@ public String front3(String str) {
   
   return (front + front + front);
 }
+
+/*
+Given a string, take the last char and return a new string with the last 
+char added at the front and back, so "cat" yields "tcatt". The original 
+string will be length 1 or more.
+*/
+public String backAround(String str) {
+  char last = str.charAt(str.length()-1);
+  return last + str + last;
+}
+
+/*
+Return true if the given non-negative number is a multiple of 3 or a 
+multiple of 5. Use the % "mod" operator
+*/
+public boolean or35(int n) {
+  return (n % 3 == 0 || n % 5 == 0);
+}
+
+/*
+Given a string, take the first 2 chars and return the string with 
+the 2 chars added at both the front and back, so "kitten" yields 
+"kikittenki". If the string length is less than 2, use whatever 
+chars are there.
+*/
+public String front22(String str) {
+  String front2;
+  if (str.length() <= 2) {
+    front2 = str;
+  } else {
+    front2 = str.substring(0, 2);
+  }
+  
+  return front2 + str + front2;
+}
+
+// Given a string, return true if the string starts with "hi" and false otherwise.
+public boolean startHi(String str) {
+  if (str.length() < 2) return false;
+  
+  String front;
+  if (str.length() == 2) {
+    front = str;
+  } else {
+    front = str.substring(0, 2);
+  }
+  
+  return (front.equals("hi"));
+  
+}
+
+// Given two temperatures, return true if one is less than 0 and the other is greater than 100.
+public boolean icyHot(int temp1, int temp2) {
+  return ((temp1 < 0 && temp2 > 100) || (temp1 > 100 && temp2 < 0));
+}
+
+// Given 2 int values, return true if either of them is in the range 10..20 inclusive.
+public boolean in1020(int a, int b) {
+  return ((a >= 10 && a <= 20) || (b >= 10 && b <= 20));
+}
+
+/*
+We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
+Given 3 int values, return true if 1 or more of them are teen.
+*/
+public boolean hasTeen(int a, int b, int c) {
+  return (a>=13 && a<=19) ||
+         (b>=13 && b<=19) ||
+         (c>=13 && c<=19);
+}
+
+/*
+Given a string, if the string "del" appears starting at index 1, return a 
+string where that "del" has been deleted. Otherwise, return the string
+ unchanged.
+*/
+ public String delDel(String str) {
+  if (str.length() >= 4 && str.substring(1, 4).equals("del")){
+    return (str.charAt(0) + str.substring(4));
+  }
+  
+  return str;
+}
+
+/*
+Return true if the given string begins with "mix", except the 'm' can 
+be anything, so "pix", "9ix" .. all count.
+*/
+public boolean mixStart(String str) {
+  if (str.length() < 3) return false;
+  return (str.substring(1,3).equals("ix"));
+}
+
+/*
+We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
+Given 2 int values, return true if one or the other is teen, but not both.
+*/
+public boolean loneTeen(int a, int b) {
+  boolean aTeen = (a >= 13 && a <= 19);
+  boolean bTeen = (b >= 13 && b <= 19);
+  
+  return (aTeen && !bTeen) || (!aTeen && bTeen);
+}
