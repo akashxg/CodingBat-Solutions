@@ -213,6 +213,17 @@ public boolean hasTeen(int a, int b, int c) {
 }
 
 /*
+We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
+Given 2 int values, return true if one or the other is teen, but not both.
+*/
+public boolean loneTeen(int a, int b) {
+  boolean aTeen = (a >= 13 && a <= 19);
+  boolean bTeen = (b >= 13 && b <= 19);
+  
+  return (aTeen && !bTeen) || (!aTeen && bTeen);
+}
+
+/*
 Given a string, if the string "del" appears starting at index 1, return a 
 string where that "del" has been deleted. Otherwise, return the string
  unchanged.
@@ -235,12 +246,112 @@ public boolean mixStart(String str) {
 }
 
 /*
-We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
-Given 2 int values, return true if one or the other is teen, but not both.
+Given a string, return a string made of the first 2 chars (if present), 
+however include first char only if it is 'o' and include the second only 
+if it is 'z', so "ozymandias" yields "oz".
 */
-public boolean loneTeen(int a, int b) {
-  boolean aTeen = (a >= 13 && a <= 19);
-  boolean bTeen = (b >= 13 && b <= 19);
+public String startOz(String str) {
+  String result = "";
   
-  return (aTeen && !bTeen) || (!aTeen && bTeen);
+  if (str.length() >= 1 && str.charAt(0)=='o') {
+    result = result + str.charAt(0);
+  }
+  
+  if (str.length() >= 2 && str.charAt(1)=='z') {
+    result = result + str.charAt(1);
+  }
+  
+  return result;
+}
+
+// Given three int values, a b c, return the largest.
+public int intMax(int a, int b, int c) {
+  int max = Math.max(a, b);
+  return Math.max(max, c);
+}
+
+/*
+Given 2 int values, return whichever value is nearest to 
+the value 10, or return 0 in the event of a tie.
+*/
+public int close10(int a, int b) {
+  int a1 = Math.abs(a- 10);
+  int b1 = Math.abs(b - 10);
+  
+  if (a1 < b1) return a;
+  if (b1 < a1) return b;
+  
+  return 0;
+}
+
+/*
+Given 2 int values, return true if they are both in the range 30..40 
+inclusive, or they are both in the range 40..50 inclusive.
+*/
+public boolean in3050(int a, int b) {
+  return ((a >= 30 && a <= 40) && (b >= 30 && b <= 40)) ||
+         ((a >= 40 && a <= 50) && (b >= 40 && b <= 50));
+}
+
+/*
+Given 2 positive int values, return the larger value that is in the 
+range 10..20 inclusive, or return 0 if neither is in that range.
+*/
+public int max1020(int a, int b) {
+  int max = Math.max(a, b);
+  int min = Math.min(a, b);
+  
+  if (max >= 10 && max <= 20) {
+    return max;
+  } else if (min >= 10 && min <= 20) {
+    return min;
+  }
+  
+  return 0;
+}
+
+// Return true if the given string contains between 1 and 3 'e' chars.
+public boolean stringE(String str) {
+  int count = 0;
+  
+  for (int i=0; i < str.length(); i++) {
+    if (str.charAt(i) == 'e') count++;
+  }
+  
+  return (count >= 1 && count <=3);
+}
+
+/*
+Given two non-negative int values, return true if they 
+have the same last digit, such as with 27 and 57.
+*/
+public boolean lastDigit(int a, int b) {
+  return (a % 10 == b % 10);
+}
+
+/*
+Given a string, return a new string where the last 3 chars are now 
+in upper case. If the string has less than 3 chars, uppercase whatever 
+is there.
+*/
+public String endUp(String str) {
+  if (str.length() <= 3) {
+    return str.toUpperCase();
+  } else {
+    return str.substring(0, str.length()-3) + str.substring(str.length()-3).toUpperCase();
+  }
+}
+
+/*
+Given a non-empty string and an int N, return the string made 
+starting with char 0, and then every Nth char of the string.
+*/
+public String everyNth(String str, int n) {
+  String result = "";
+  
+  for (int i = 0; i < str.length(); i += n) {
+    result += str.charAt(i);
+  }
+  
+  return result;
 }
