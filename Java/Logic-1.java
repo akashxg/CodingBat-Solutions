@@ -224,3 +224,87 @@ public boolean lastDigit(int a, int b, int c) {
 public boolean lessBy10(int a, int b, int c) {
   return (Math.abs(a-b) >= 10 || Math.abs(b-c) >= 10 || Math.abs(a-c) >= 10);
 }
+
+/*
+Return the sum of two 6-sided dice rolls, each in the range 1..6. However, 
+if noDoubles is true, if the two dice show the same value, increment one 
+die to the next value, wrapping around to 1 if its value was 6.
+*/
+public int withoutDoubles(int die1, int die2, boolean noDoubles) {
+  if (noDoubles && die1 == die2) die1++;
+  if (die1 > 6) die1 = 1;
+  return die1 + die2;
+}
+
+/*
+Given two int values, return whichever value is larger. However if the two values have the 
+same remainder when divided by 5, then the return the smaller value. However, in all cases, 
+if the two values are the same, return 0.
+*/
+public int maxMod5(int a, int b) {
+  if (a == b) return 0;
+  if (a % 5 == b % 5) return Math.min(a,b);
+  return Math.max(a,b);
+}
+
+
+/*
+You have a red lottery ticket showing ints a, b, and c, each of which is 0, 1, or 2. 
+If they are all the value 2, the result is 10. Otherwise if they are all the same, 
+the result is 5. Otherwise so long as both b and c are different from a, the result 
+is 1. Otherwise the result is 0.
+*/
+public int redTicket(int a, int b, int c) {
+  if (a==2&&b==2&&c==2) return 10;
+  if (a==b&&b==c) return 5;
+  if (b!=a&&c!=a) return 1;
+  return 0;
+}
+
+/*
+You have a green lottery ticket, with ints a, b, and c on it. If the numbers 
+are all different from each other, the result is 0. If all of the numbers are 
+the same, the result is 20. If two of the numbers are the same, the result is 10.
+*/
+public int greenTicket(int a, int b, int c) {
+  if (a==b&&b==c) return 20;
+  if (a==b||b==c||a==c) return 10;
+  return 0;
+}
+
+/*
+You have a blue lottery ticket, with ints a, b, and c on it. This makes three pairs, 
+which we'll call ab, bc, and ac. Consider the sum of the numbers in each pair. If any 
+pair sums to exactly 10, the result is 10. Otherwise if the ab sum is exactly 10 more 
+than either bc or ac sums, the result is 5. Otherwise the result is 0.
+*/
+public int blueTicket(int a, int b, int c) {
+  int sumA = a+b;
+  int sumB = b+c;
+  int sumC = a+c;
+  
+  if (sumA==10||sumB==10||sumC==10) return 10;
+  if (sumA-sumB>=10 || sumA-sumC>=10) return 5;
+  return 0;
+}
+
+/*
+Given two ints, each in the range 10..99, return true if there is a 
+digit that appears in both numbers, such as the 2 in 12 and 23.
+*/
+public boolean shareDigit(int a, int b) {
+  return (a/10==b/10 || a/10==b%10 || a%10==b/10 || a%10==b%10);
+}
+
+/*
+Given 2 non-negative ints, a and b, return their sum, so long as the sum has 
+the same number of digits as a. If the sum has more digits than a, just return a without b.
+*/
+public int sumLimit(int a, int b) {
+  int sum = a + b;
+  int lengthA = String.valueOf(a).length();
+  int lengthSum = String.valueOf(sum).length();
+  
+  if (lengthSum == lengthA) return sum;
+  return a;
+}
