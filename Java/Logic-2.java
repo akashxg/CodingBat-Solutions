@@ -51,3 +51,88 @@ public int fixTeen(int n) {
 public int noTeenSum(int a, int b, int c) {
   return (fixTeen(a) + fixTeen(b) + fixTeen(c));
 }
+
+/*
+For this problem, we'll round an int value up to the next multiple of 10 if 
+its rightmost digit is 5 or more, so 15 rounds up to 20. Alternately, round 
+down to the previous multiple of 10 if its rightmost digit is less than 5, 
+so 12 rounds down to 10. Given 3 ints, a b c, return the sum of their rounded 
+values. To avoid code repetition, write a separate helper "public int round10(int num) 
+{" and call it 3 times. Write the helper entirely below and at the same indent level as roundSum().
+*/
+public int round10(int n) {
+  if (n % 10 >= 5) return (n/10 + 1)*10;
+  return (n - n%10);
+}
+
+public int roundSum(int a, int b, int c) {
+  return (round10(a) + round10(b) + round10(c));
+}
+
+/*
+Given three ints, a b c, return true if one of b or c is "close" (differing from a 
+by at most 1), while the other is "far", differing from both other values by 2 or 
+more. Note: Math.abs(num) computes the absolute value of a number.
+*/
+public boolean closeFar(int a, int b, int c) {
+  return Math.abs(b-a) <= 1 && Math.abs(c-a) >=2 && Math.abs(c-b) >=2 || Math.abs(c-a) <= 1 && Math.abs(b-a) >= 2 && Math.abs(b-c) >= 2;
+}
+
+/*
+Given 2 int values greater than 0, return whichever value is 
+nearest to 21 without going over. Return 0 if they both go over.
+*/
+public int blackjack(int a, int b) {
+  if (a > 21 && b > 21) return 0;
+  if (a > 21) return b;
+  if (b > 21) return a;
+  if (Math.abs(a-21) < Math.abs(b-21)) return a;
+  return b;
+}
+
+/*
+Given three ints, a b c, one of them is small, one is medium and one is large. 
+Return true if the three values are evenly spaced, so the difference between 
+small and medium is the same as the difference between medium and large.
+*/
+public boolean evenlySpaced(int a, int b, int c) {
+  	int temp;
+  
+	if(b > a)
+	{
+		temp = a;
+		a = b;
+		b = temp;
+	}
+	if(c > b)
+	{
+		temp = b;
+		b =c;
+		c = temp;
+	}
+	if(b > a)
+	{
+		temp = a;
+		a = b;
+		b = temp;
+	}
+	
+	return(a - b == b - c);
+}
+
+/*
+We want make a package of goal kilos of chocolate. We have small bars 
+(1 kilo each) and big bars (5 kilos each). Return the number of small 
+bars to use, assuming we always use big bars before small bars. Return 
+-1 if it can't be done.
+*/
+public int makeChocolate(int small, int big, int goal) {
+  int max = goal/5;
+	if(max <= big)
+		goal -= max*5;
+	else
+		goal -= big*5;
+	if(goal <= small)
+		return goal;
+	return -1;
+}
