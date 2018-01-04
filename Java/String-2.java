@@ -52,3 +52,40 @@ public boolean endOther(String a, String b) {
   String b1 = b.toLowerCase();
   return (a1.endsWith(b1) || b1.endsWith(a1));
 }
+
+/*
+Return true if the given string contains an appearance of "xyz" where the xyz 
+is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does not.
+*/
+public boolean xyzThere(String str) {
+  for (int i=0;i<str.length()-2;i++) {
+    if (str.substring(i,i+3).equals("xyz")) {
+      if (i == 0 || str.charAt(i-1) != '.') {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
+public boolean bobThere(String str) {
+  for (int i=0;i<str.length()-2;i++) {
+    if (str.charAt(i) == 'b' && str.charAt(i+2) == 'b') return true;
+  }
+  return false;
+}
+
+/*
+We'll say that a String is xy-balanced if for all the 'x' chars in the string, 
+there exists a 'y' char somewhere later in the string. So "xxy" is balanced, 
+but "xyx" is not. One 'y' can balance multiple 'x's. Return true if the given 
+string is xy-balanced.
+*/
+public boolean xyBalance(String str) {
+  for (int i=str.length()-1; i >=0; i--) {
+    if (str.charAt(i) == 'x') return false;
+    else if (str.charAt(i) == 'y') return true;
+  }
+  return true;
+
