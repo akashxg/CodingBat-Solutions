@@ -150,5 +150,81 @@ public String[] fizzArray2(int n) {
   return arr;
 }
 
+// Given an array of ints, return true if it contains no 1's or it contains no 4's.
+public boolean no14(int[] nums) {
+  boolean one = false, four = false;
+  for (int i=0; i<nums.length; i++) {
+    if (nums[i] == 1) one = true;
+    if (nums[i] == 4) four = true;
+  }
+  return (!one || !four);
+}
 
+/*
+We'll say that a value is "everywhere" in an array if for every pair of 
+adjacent elements in the array, at least one of the pair is that value. 
+Return true if the given value is everywhere in the array.
+*/
+public boolean isEverywhere(int[] nums, int val) {
+    for (int i=0; i<nums.length-1; i++) {
+      if (nums[i] != val && nums[i+1] != val) return false;
+    }
+    return true;
+}
+
+/*
+Given an array of ints, return true if the array contains a 2 
+next to a 2 or a 4 next to a 4, but not both.
+*/
+public boolean either24(int[] nums) {
+  boolean two=false, four=false;
+  for (int i=0; i<nums.length-1; i++) {
+    if (nums[i] == 2 && nums[i+1] == 2) two = true;
+    if (nums[i] == 4 && nums[i+1] == 4) four = true;
+  }
+  return (two != four);
+}
+
+/*
+Given arrays nums1 and nums2 of the same length, for every element in nums1, 
+consider the corresponding element in nums2 (at the same index). Return the 
+count of the number of times that the two elements differ by 2 or less, but are not equal.
+*/
+public int matchUp(int[] nums1, int[] nums2) {
+  int count = 0;
+  for (int i=0; i<nums1.length; i++) {
+    if (nums1[i] != nums2[i] && Math.abs(nums1[i]-nums2[i]) <=2) count++;
+  }
+  return count;
+}
+
+/*
+Given an array of ints, return true if the array contains two 7's next to each 
+other, or there are two 7's separated by one element, such as with {7, 1, 7}.
+*/
+public boolean has77(int[] nums) {
+  for (int i=0; i<nums.length-1; i++) {
+    if (nums[i] == 7 && nums[i+1] == 7) return true;
+    if(i <= nums.length-3 && nums[i] == 7 && nums[i+2] ==7) return true;
+  }
+  return false;
+}
+
+// Given an array of ints, return true if there is a 1 in the array with a 2 somewhere later in the array.
+public boolean has12(int[] nums) {
+  boolean one = false;
+  for (int i=0; i<nums.length; i++) {
+    if (nums[i] == 1) one = true;
+    if (one && nums[i] == 2) return true;
+  }
+  return false;
+}
+
+// Given an array of ints, return true if the array contains either 3 even or 3 odd values all next to each other.
+public boolean modThree(int[] nums) {
+  for (int i=0; i<nums.length-2; i++) {
+    if (nums[i] % 2 == nums[i+1] % 2 && nums[i] % 2 == nums[i+2] % 2) return true;
+  }
+  return false;
+}
 
