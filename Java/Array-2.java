@@ -228,3 +228,21 @@ public boolean modThree(int[] nums) {
   return false;
 }
 
+/*
+Given an array of ints, return true if the value 3 appears in the 
+array exactly 3 times, and no 3's are next to each other.
+*/
+public boolean haveThree(int[] nums) {
+  int count = 0;
+  boolean found = false;
+  
+  for (int i=0; i<nums.length; i++) {
+    if (nums[i] != 3) found = false;
+    if (nums[i] == 3 && found == true) return false;
+    if (nums[i] == 3 && found == false) {
+      found = true;
+      count++;
+    }
+  }
+  return (count == 3);
+}
