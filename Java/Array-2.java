@@ -246,3 +246,29 @@ public boolean haveThree(int[] nums) {
   }
   return (count == 3);
 }
+
+// Given an array of ints, return true if every 2 that appears in the array is next to another 2.
+public boolean twoTwo(int[] nums) {
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] == 2) {
+      i++;
+      if (!(i<(nums.length)) || nums[i] != 2) return false;
+      while (i < nums.length && nums[i] == 2) i++;
+    }
+  }
+  return true;
+}
+
+/*
+Return true if the group of N numbers at the start and end of the array are the same. For 
+example, with {5, 6, 45, 99, 13, 5, 6}, the ends are the same for n=0 and n=2, and false 
+for n=1 and n=3. You may assume that n is in the range 0..nums.length inclusive.
+*/
+public boolean sameEnds(int[] nums, int len) {
+  boolean b = true;
+  for (int i = 0; i < len; i++ ) {
+    if (nums[i] == nums[nums.length - len + i]) b = true;
+    else b = false;
+  }
+ return b;
+}
